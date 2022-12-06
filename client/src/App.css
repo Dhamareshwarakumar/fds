@@ -1,0 +1,247 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Utils */
+
+.text-primary {
+  color: #E72444 !important;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.btn-primary {
+  background-color: #E72444 !important;
+  border-color: #E72444 !important;
+}
+
+.btn-primary:hover {
+  background: #c92843 !important;
+}
+
+
+/* Login Page */
+section.login {
+  height: 100vh;
+}
+
+.imageContainer {
+  background-image: url('../public/img/login.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Items Slider */
+.sliderContainer {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #F8F8F8;
+  border-radius: 12px;
+  position: relative;
+  justify-content: center;
+}
+
+.slider {
+  /* border: 1px solid red; */
+  width: 100%;
+  height: 200px;
+  margin: auto;
+  background: #F8F8F8;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+.sliderItemContainer {
+  /* min-width: 20%; */
+  /* height: 150px;
+  background-color: #FFF;
+  border-radius: 12px; */
+  position: relative;
+  left: 0;
+  transition: 0.5s;
+}
+
+@media screen and (max-width: 576px) {
+  .sliderItemContainer {
+    flex: 0 0 50%;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .sliderItemContainer {
+    flex: 0 0 25%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .sliderItemContainer {
+    flex: 0 0 16.6666%;
+  }
+}
+
+/* .sliderItemContainer:hover {
+  border: 1px solid #CCC;
+} */
+
+.sliderLeft,
+.sliderRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  background: #FFF;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: xx-large;
+  box-shadow: 0 0 5px #CCC;
+}
+
+.sliderLeft {
+  left: 15px;
+}
+
+.sliderRight {
+  right: 15px;
+}
+
+.sliderArrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.sliderLeft .sliderArrow {
+  transform: translate(-60%, -55%);
+}
+
+.sliderRight .sliderArrow {
+  transform: translate(-40%, -55%);
+}
+
+.sliderItem {
+  width: 150px;
+  height: 150px;
+  background-color: #FFF;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sliderItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+/********************************************
+************* Restaurant Item ***************
+********************************************/
+.restaurantItem {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.restaurantItem:hover {
+  background-color: #FFF;
+  box-shadow: 0 0 5px #CCC;
+
+}
+
+.restaurantItem__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Restaurant Details Page */
+.restaurantHeader {
+  width: 100%;
+  height: 40vh;
+  background: url(https://b.zmtcdn.com/data/pictures/4/18933574/8500a410c5cc7e25dafcde7cd9de9c99.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.restaurantHeader .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: bisque;
+}
+
+/* Dish Item */
+.DishItemContainer .dishImageContainer img {
+  width: 250px;
+  border-radius: 12px;
+}
+
+/********************************************
+************* Dining ***************
+********************************************/
+.dining {
+  min-height: 100vh;
+}
+
+.tables {
+  height: 200px;
+  position: relative;
+  border: 1px solid #ccc;
+  margin: 12px 0px;
+  padding: 8px 0px;
+  border-radius: 16px;
+}
+
+.tables:hover {
+  box-shadow: 0px 0px 8px 4px #eee;
+}
+
+.selector {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
