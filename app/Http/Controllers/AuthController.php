@@ -9,7 +9,7 @@ use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponser;
 use Firebase\JWT\JWT;
-
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller {
     use ApiResponser;
@@ -44,8 +44,10 @@ class AuthController extends Controller {
         ]);
 
         if ($register) {
+            Log::info("[AuthController][register] - New User {$username}");
             return $this->successResponse('User registered successfully', Response::HTTP_CREATED);
         }
+        Log::error('[AuthController][register][Database Error] - User could not be registered');
         return $this->errorResponse('User could not be registered', Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 
@@ -79,6 +81,7 @@ class AuthController extends Controller {
 
         $jwt = JWT::encode($payload, env('JWT_SECRET'), 'HS256');
 
+        Log::info("[AuthController][login] - User {$email} logged in");
         return $this->successResponse(['token' => "Bearer {$jwt}"], Response::HTTP_OK);
     }
 
@@ -118,9 +121,11 @@ class AuthController extends Controller {
         ]);
 
         if ($register) {
+            Log::info("[AuthController][addRestaurantUser] - New Restaurant User {$username}");
             return $this->successResponse('User registered successfully', Response::HTTP_CREATED);
         }
 
+        Log::error('[AuthController][addRestaurantUser][Database Error] - User could not be registered');
         return $this->errorResponse('User could not be registered', Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 

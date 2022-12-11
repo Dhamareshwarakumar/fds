@@ -8,7 +8,7 @@ use Illuminate\Http\Response;
 use App\Traits\ApiResponser;
 use App\Services\OrderService;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller {
     use ApiResponser;
@@ -65,6 +65,7 @@ class OrderController extends Controller {
 
         DB::statement('COMMIT');
         DB::statement('UNLOCK TABLES');
+        Log::info('[OrderController][generatereport] Report generated for restaurant ' . $restaurant_id);
         return $this->successResponse([
             'ordersCount' => $ordersCount,
             'totalAmount' => $totalAmount,

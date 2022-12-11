@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use Illuminate\Http\Response;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -42,6 +41,7 @@ class BasketService {
                 ->where('basket_id', $basket->basket_id)
                 ->delete();
         }
+        return false;
     }
 
     public function getBasketDishes($user_id, $restaurant_id) {
@@ -86,6 +86,14 @@ class BasketService {
         $basket = $this->getBasket($user_id, $dish->restaurant_id);
         if (!$basket) {
             $basket = $this->createBasket($user_id, $dish->restaurant_id);
+            if (!$basket) {
+                Log::error('[BasketService][createBasketDish][DatabaseError] :: Error creating basket');
+                return [
+                    'success' => false,
+                    'msg' => 'Basket could not be created',
+                    'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+                ];
+            }
             $basket = $this->getBasket($user_id, $dish->restaurant_id);
         }
         
@@ -113,7 +121,7 @@ class BasketService {
                 'status' => Response::HTTP_CREATED
             ];
         } else {
-            Log::channel('error_log')->error('Database Error :: Error adding dish to cart');
+            Log::error('[BasketService][createBasketDish][DatabaseError] :: Error adding dish to cart');
             return [
                 'success' => false,
                 'msg' => 'Dish could not be added',
@@ -133,7 +141,7 @@ class BasketService {
             ];
         }
 
-        // check if basket exists else create one
+        // check if basket exists
         $basket = $this->getBasket($user_id, $dish->restaurant_id);
         if (!$basket) {
             return [
@@ -167,7 +175,7 @@ class BasketService {
                         'status' => Response::HTTP_OK
                     ];
                 } else {
-                    Log::channel('error_log')->error('Database Error :: Error removing dish from cart');
+                    Log::error('[BasketService][updateBasketDish][DatabaseError] :: Error removing dish from cart');
                     return [
                         'success' => false,
                         'msg' => 'Dish could not be removed',
@@ -191,7 +199,7 @@ class BasketService {
                 'status' => Response::HTTP_OK
             ];
         } else {
-            Log::channel('error_log')->error('Database Error :: Error updating dish in cart');
+            Log::error('[BasketService][updateBasketDish][DatabaseError] :: Error updating dish in cart');
             return [
                 'success' => false,
                 'msg' => 'Dish could not be updated',
@@ -235,14 +243,14 @@ class BasketService {
 
                 // $this->orderService->createOrderDish($order->order_id, $basketDish->dish_id, 0, $basketDish->dish_price);
                 if (!$result['success']) {
-                    Log::channel('error_log')->error('Database Error :: Error moving basket items to order items');
+                    Log::critical('[BasketService][checkoutBasket][DatabaseError] :: Error moving basket items to order items');
                     DB::statement('ROLLBACK');
                     return $result;
                 }
             }
 
             if (!$this->deleteBasket($user_id, $restaurant_id)) {
-                Log::channel('error_log')->error('Database Error :: Error deleting basket');
+                Log::error('Database Error :: Error deleting basket');
                 DB::statement('ROLLBACK');
                 return [
                     'success' => false,
@@ -259,7 +267,7 @@ class BasketService {
                 'status' => Response::HTTP_CREATED
             ];
         } else {
-            Log::channel('error_log')->error('Database Error :: Error creating order');
+            Log::error('Database Error :: Error creating order');
             DB::statement('ROLLBACK');
             return [
                 'success' => false,

@@ -1,0 +1,23 @@
+[2022-12-11 06:18:19] local.ERROR: Symfony\Component\HttpFoundation\Response::setContent(): Argument #1 ($content) must be of type ?string, stdClass given, called in /home/damareshwarakumar/Desktop/fds/vendor/illuminate/http/Response.php on line 72 {"exception":"[object] (TypeError(code: 0): Symfony\\Component\\HttpFoundation\\Response::setContent(): Argument #1 ($content) must be of type ?string, stdClass given, called in /home/damareshwarakumar/Desktop/fds/vendor/illuminate/http/Response.php on line 72 at /home/damareshwarakumar/Desktop/fds/vendor/symfony/http-foundation/Response.php:394)
+[stacktrace]
+#0 /home/damareshwarakumar/Desktop/fds/vendor/illuminate/http/Response.php(72): Symfony\\Component\\HttpFoundation\\Response->setContent()
+#1 /home/damareshwarakumar/Desktop/fds/vendor/illuminate/http/Response.php(35): Illuminate\\Http\\Response->setContent()
+#2 /home/damareshwarakumar/Desktop/fds/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(451): Illuminate\\Http\\Response->__construct()
+#3 /home/damareshwarakumar/Desktop/fds/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(391): Laravel\\Lumen\\Application->prepareResponse()
+#4 /home/damareshwarakumar/Desktop/fds/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(357): Laravel\\Lumen\\Application->callControllerCallable()
+#5 /home/damareshwarakumar/Desktop/fds/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(331): Laravel\\Lumen\\Application->callLumenController()
+#6 /home/damareshwarakumar/Desktop/fds/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(284): Laravel\\Lumen\\Application->callControllerAction()
+#7 /home/damareshwarakumar/Desktop/fds/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(269): Laravel\\Lumen\\Application->callActionOnArrayBasedRoute()
+#8 /home/damareshwarakumar/Desktop/fds/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(239): Laravel\\Lumen\\Application->handleFoundRoute()
+#9 /home/damareshwarakumar/Desktop/fds/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(175): Laravel\\Lumen\\Application->handleDispatcherResponse()
+#10 /home/damareshwarakumar/Desktop/fds/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(48): Laravel\\Lumen\\Application->Laravel\\Lumen\\Concerns\\{closure}()
+#11 /home/damareshwarakumar/Desktop/fds/app/Http/Middleware/CorsMiddleware.php(24): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#12 /home/damareshwarakumar/Desktop/fds/vendor/illuminate/pipeline/Pipeline.php(180): App\\Http\\Middleware\\CorsMiddleware->handle()
+#13 /home/damareshwarakumar/Desktop/fds/vendor/laravel/lumen-framework/src/Routing/Pipeline.php(30): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}()
+#14 /home/damareshwarakumar/Desktop/fds/vendor/illuminate/pipeline/Pipeline.php(116): Laravel\\Lumen\\Routing\\Pipeline->Laravel\\Lumen\\Routing\\{closure}()
+#15 /home/damareshwarakumar/Desktop/fds/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(428): Illuminate\\Pipeline\\Pipeline->then()
+#16 /home/damareshwarakumar/Desktop/fds/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(177): Laravel\\Lumen\\Application->sendThroughPipeline()
+#17 /home/damareshwarakumar/Desktop/fds/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php(112): Laravel\\Lumen\\Application->dispatch()
+#18 /home/damareshwarakumar/Desktop/fds/public/index.php(28): Laravel\\Lumen\\Application->run()
+#19 {main}
+"} 

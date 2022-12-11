@@ -6,10 +6,17 @@ use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Tables\RestaurantTable;
 
 class RestaurantService {
+    protected $restaurantTable;
+
+    public function __construct(RestaurantTable $restaurantTable) {
+        $this->restaurantTable = $restaurantTable;
+    }
+
     public function getAllRestaurants() {
-        return DB::table('restaurants')->get();
+        return $this->restaurantTable->index();
     }
 
     public function getRestaurantById($id) {
